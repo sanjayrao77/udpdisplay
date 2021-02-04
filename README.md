@@ -23,7 +23,7 @@ ls -l /tmp/androidbuild/apk
 ```
 
 To send images to the android app,
-you'll want to edit the IP in *draw\_udp.sh* and *draw\tcp.sh* first.
+you'll want to edit the IP in *draw\_udp.sh* and *draw\_tcp.sh* first.
 
 Then:
 ```bash
