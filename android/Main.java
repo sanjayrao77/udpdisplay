@@ -100,7 +100,6 @@ public class Main extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		PM=(PowerManager)getSystemService(POWER_SERVICE);
 		wl=PM.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK|PowerManager.ACQUIRE_CAUSES_WAKEUP, Main.class.getPackage().getName());
-		wl.acquire();
 
 		int off;
 		for (off=0;off<100;off++) {
@@ -156,6 +155,7 @@ public class Main extends Activity {
 	public void onPause() {
 Log.e(globals.DBG,"onPause");
 		isuirunning=false;
+		wl.release();
 		isinit=false;
 		synchronized(commvars) {
 			commvars.isdestroy=true;
@@ -171,6 +171,7 @@ Log.e(globals.DBG,"onPause");
 	public void onResume() {
 		super.onResume();
 		setContentView(R.layout.main);
+		wl.acquire();
 		isuirunning=true;
 		iv=(ImageView)findViewById(R.id.imageview);
 		tv=(TextView)findViewById(R.id.textview);
